@@ -23,7 +23,7 @@ def train_first_model(stock_data, n_splits=15, n_estimators=100):
 
     # Features (X) and Target variable (y)
     # Considering 'Open', 'High', 'Low', 'Close', 'Volume' as features for simplicity
-    features = ['Open', 'High', 'Low', 'Close', 'Volume']
+    features = ['Open', 'High', 'Low', 'Close', 'Volume', 'Volume_Price_Interact']
     X = stock_data[features]
     y = stock_data['event']
 

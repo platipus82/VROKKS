@@ -2,18 +2,29 @@ import pandas as pd
 
 def give_stock_data(stock, start_year=2015):
     # Define the file path for stock data
-    individual_stock_file = 'Data/Archive/Stocks/' + stock + '.us.txt'
+    stock_file = 'Data/Archive/Stocks/' + stock + '.us.txt'
 
     # Load the data into a pandas DataFrame
-    individual_stock_data = pd.read_csv(individual_stock_file)
+    stock_data = pd.read_csv(stock_file)
 
     # Convert the 'Date' column to a datetime object
-    individual_stock_data['Date'] = pd.to_datetime(individual_stock_data['Date'])
+    stock_data['Date'] = pd.to_datetime(stock_data['Date'])
 
     # Filter data after the specified start year
-    individual_stock_data = individual_stock_data[individual_stock_data['Date'].dt.year >= start_year]
+    stock_data = stock_data[stock_data['Date'].dt.year >= start_year]
 
-    return individual_stock_data
+    # Calculate daily percentage change in Close price
+    stock_data['Daily_Return'] = stock_data['Close'].pct_change() * 100
+
+    # Create a new feature: interaction between volume and price change
+    stock_data['Volume_Price_Interact'] = stock_data['Volume'] * stock_data['Daily_Return']
+
+    # Discard the first row (index 0) to remove data with NaN values
+    stock_data = stock_data.iloc[1:]
+
+    return stock_data
+
+
 
 def give_event_data(stock_data, event_threshold=-1):
     # Calculate daily percentage change in Close price
