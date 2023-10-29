@@ -9,7 +9,7 @@ def main():
 
     if default == "y":
         stock_name = "aapl"
-        event_t = 1
+        event_t = -1
         n_splits = 20
         n_estimators = 150
     else:
