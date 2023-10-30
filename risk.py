@@ -28,11 +28,18 @@ def main():
     # Calculate event frequency
     calculate_event_frequency(train_data, event_threshold=event_t)
 
-    # Plot stock prices
-    plot_stock_price_with_events(test_data, stock_name=stock_name)
+    # Train model
+    risk_model = train_first_model(train_data, n_splits=n_splits, n_estimators=n_estimators)
 
-    # Train models
-    train_first_model(train_data, n_splits=n_splits, n_estimators=n_estimators)
+    # Make predictions
+    print("---making predictions---")
+    features = ['Open', 'High', 'Low', 'Close', 'Volume', 'Volume_Price_Interact']
+    new_data = test_data
+    X_new = new_data[features]
+    y_pred_new = risk_model.predict(X_new)
+
+    # Plot events and predicted events
+    plot_stock_price_with_events(test_data, stock_name=stock_name, y_pred=y_pred_new)
 
 if __name__ == "__main__":
     main()
