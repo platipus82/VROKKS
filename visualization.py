@@ -11,8 +11,9 @@ def plot_stock_price(stock_data, stock_name="aapl"):
     plt.tight_layout()
     plt.show()
 
-def plot_stock_price_with_events(stock_data, stock_name="aapl"):
-    # Plotting the Close prices over time
+import matplotlib.pyplot as plt
+
+def plot_stock_price_with_events(stock_data, stock_name="aapl", y_pred=None):
     plt.figure(figsize=(10, 6))
 
     # Create a boolean mask for events
@@ -21,19 +22,24 @@ def plot_stock_price_with_events(stock_data, stock_name="aapl"):
     # Plot the Close prices in blue
     plt.plot(stock_data['Date'], stock_data['Close'], color='blue', label='Close Price')
 
-    # Highlight events by coloring them in red
+    # Highlight actual events by coloring them in red
     plt.plot(stock_data['Date'][event_mask], stock_data['Close'][event_mask], color='red', marker='o', linestyle='', label='Event')
 
-    plt.title('Stock ' + stock_name + ': Close Prices Over Time')
+    if y_pred is not None:
+        # Plot predicted values in green
+        plt.plot(stock_data['Date'], stock_data['Close'] * y_pred, color='green', marker='^', linestyle='', label='Predicted')
+
+    plt.title(f'Stock {stock_name}: Close Prices Over Time')
     plt.xlabel('Date')
     plt.ylabel('Close Price')
-    plt.xticks(rotation=45)  # Rotate x-axis labels for better readability
+    plt.xticks(rotation=45)
     plt.tight_layout()
 
-    # Add a legend to distinguish between Close Price and Events
+    # Add a legend to distinguish between Close Price, Events, and Predictions
     plt.legend()
 
     plt.show()
+
 
 def plot_stock_price_with_events_and_risk(stock_data, stock_name="aapl"):
     from matplotlib.lines import Line2D  # Import Line2D
