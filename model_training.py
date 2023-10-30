@@ -77,3 +77,7 @@ def train_first_model(stock_data, n_splits=15, n_estimators=100):
     print("\nAverage Metrics:")
     for metric, value in avg_metrics.items():
         print(f"{metric.capitalize()}: {value:.4f}")
+
+def tell_modelled_risk():
+    ''' Risk in range 0...100, 0 representing 0 risk, and 100 representing 100% certainty '''
+    return 42
