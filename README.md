@@ -12,8 +12,6 @@ We used dataset readily available from Kaggle:
 - https://www.kaggle.com/datasets/paultimothymooney/stock-market-data 3.
 - https://rapidapi.com/collection/finviz-api 
 
-...and APIs:
-xxx
 
 This model does have some restrictions:
   - There is no universal definition for "risk". 
@@ -26,4 +24,7 @@ This model does have some restrictions:
     This means that the day before and after are not looked at. 
     So if for example during a multiple days span the stock price drops, but the daily threshold is not ever crossed, the model doesn't take it into account as a price drop / event.
 
+  - In the output plot there is a text "Predicted risk for anticipated event is 42".
+    The value 42 is incorrect, but it is there to represent that if in file model_training.py the function tell_modelled_risk was defined, it would return a risk score in range 0-100 for the event and this risk score would replace value 42.
+  An additional future possibility for the model could be to make this risk score function operative.
     
