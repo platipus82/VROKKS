@@ -21,4 +21,4 @@ This model does have some restrictions:
     
   - The events, so stock price drops, are only observed considering whether or not they cross the daily threshold of -1%, -10% or other value drop. 
     This means that the day before and after are not looked at. 
-    So if for example during a multiple days span the stock price drops, but the daily threshold of is not ever crossed, the model doesn't take it into account as a price drop / event.       
+    So if for example during a multiple days span the stock price drops, but the daily threshold is not ever crossed, the model doesn't take it into account as a price drop / event.       
