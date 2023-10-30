@@ -13,7 +13,7 @@ def main():
         n_splits = 20
         n_estimators = 150
     else:
-        stock_name = input("Enter the stock ID (e.g., aapl): ")
+        stock_name = input("Enter the stock ID (e.g., aapl): ").lower()
         event_t = -float(input("Enter the event threshold (e.g., 1 for 1% dip): "))
         n_splits = int(input("Enter the number of splits for time series cross-validation: "))
         n_estimators = int(input("Enter the number of estimators for the Random Forest model: "))
