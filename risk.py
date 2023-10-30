@@ -1,6 +1,6 @@
 from data_loading import give_stock_data, give_event_data
 from model_training import train_first_model
-from visualization import plot_stock_price, plot_stock_price_with_events, calculate_event_frequency
+from visualization import plot_stock_price, plot_stock_price_with_events, plot_stock_price_with_events_and_risk, tell_modelled_risk, calculate_event_frequency
 
 def main():
     default = input("Run with default arguments? (y/n): ").lower()
