@@ -16,9 +16,14 @@ We used dataset readily available from Kaggle:
 xxx
 
 This model does have some restrictions:
+  - There is no universal definition for "risk". 
+    In this model risk is defined as the probability that a stock's value is going to fall by a certain amount in the future (drop of 1%, 10% or some other amount).
+  
   - The output visualization of the model provides multiple incorrect predictions for stock price events.
-    However it does predict all of the events that truly occurred correctly.
+  - However it does predict all of the events that truly occurred correctly.
     
   - The events, so stock price drops, are only observed considering whether or not they cross the daily threshold of -1%, -10% or other value drop. 
     This means that the day before and after are not looked at. 
-    So if for example during a multiple days span the stock price drops, but the daily threshold is not ever crossed, the model doesn't take it into account as a price drop / event.       
+    So if for example during a multiple days span the stock price drops, but the daily threshold is not ever crossed, the model doesn't take it into account as a price drop / event.
+
+    
