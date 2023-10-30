@@ -22,7 +22,16 @@ def give_stock_data(stock, start_year=2015):
     # Discard the first row (index 0) to remove data with NaN values
     stock_data = stock_data.iloc[1:]
 
-    return stock_data
+    # Calculate the cutoff for the test set (e.g., last month)
+    latest_date = stock_data['Date'].max()
+    test_cutoff_date = latest_date - pd.DateOffset(months=1)
+
+    # Split the data into training and testing sets
+    train_data = stock_data[stock_data['Date'] < test_cutoff_date]
+    test_data = stock_data[stock_data['Date'] >= test_cutoff_date]
+
+    return train_data, test_data
+
 
 
 
